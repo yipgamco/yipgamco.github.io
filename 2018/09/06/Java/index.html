@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="输出：‘’’System.out.print();    //不换行System.out.println();    //换行System.out.printf();    //带有元素类型 ‘’’控制台输入字符：‘’’System.in.read();‘’’控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借">
+<meta name="description" content="输出：123System.out.print();	//不换行System.out.println();	//换行System.out.printf();	//带有元素类型 控制台输入字符：1System.in.read(); 控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借助BufferedReader对">
 <meta name="keywords" content="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java">
 <meta property="og:url" content="http://yoursite.com/2018/09/06/Java/index.html">
 <meta property="og:site_name" content="Yipgamco">
-<meta property="og:description" content="输出：‘’’System.out.print();    //不换行System.out.println();    //换行System.out.printf();    //带有元素类型 ‘’’控制台输入字符：‘’’System.in.read();‘’’控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借">
+<meta property="og:description" content="输出：123System.out.print();	//不换行System.out.println();	//换行System.out.printf();	//带有元素类型 控制台输入字符：1System.in.read(); 控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借助BufferedReader对">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-06T08:31:58.264Z">
+<meta property="og:updated_time" content="2018-09-06T08:33:34.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java">
-<meta name="twitter:description" content="输出：‘’’System.out.print();    //不换行System.out.println();    //换行System.out.printf();    //带有元素类型 ‘’’控制台输入字符：‘’’System.in.read();‘’’控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借">
+<meta name="twitter:description" content="输出：123System.out.print();	//不换行System.out.println();	//换行System.out.printf();	//带有元素类型 控制台输入字符：1System.in.read(); 控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借助BufferedReader对">
 
 
 
@@ -332,8 +332,10 @@
       
 
       
-        <p>输出：<br>‘’’<br>System.out.print();    //不换行<br>System.out.println();    //换行<br>System.out.printf();    //带有元素类型</p>
-<p>‘’’<br>控制台输入字符：<br>‘’’<br>System.in.read();<br>‘’’<br>控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借助BufferedReader对象提供的readLine方法从键盘获取到字符串<br>‘’’<br>String s = “”;<br>BufferedReader in = new BufferedReader(new InputStreamReader(System.in));<br>s = in.readLine();<br>//此时字符串储存在s中<br>‘’’<br>swing对话框实现输入/输出：<br>static void showMessageDialog(Component parentComponent,Object message)<br>parentComponent是父窗体部件，如果存在，则对话框显示在窗体的中央，值为null时，表示对话框在屏幕中央显示。message是显示的内容<br>‘’’<br>String s = JOptionPane.showInputDialog(“输入提示信息”);<br>JOptionPane.showMessageDialog(null,”输出信息”+s);<br>‘’’</p>
+        <p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.out.print();	//不换行</span><br><span class="line">System.out.println();	//换行</span><br><span class="line">System.out.printf();	//带有元素类型</span><br></pre></td></tr></table></figure></p>
+<p>控制台输入字符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.in.read();</span><br></pre></td></tr></table></figure></p>
+<p>控制台输入字符串：System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借助BufferedReader对象提供的readLine方法从键盘获取到字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s = &quot;&quot;;</span><br><span class="line">BufferedReader in = new BufferedReader(new InputStreamReader(System.in));</span><br><span class="line">s = in.readLine();</span><br><span class="line">//此时字符串储存在s中</span><br></pre></td></tr></table></figure></p>
+<p>swing对话框实现输入/输出：<br>static void showMessageDialog(Component parentComponent,Object message)<br>parentComponent是父窗体部件，如果存在，则对话框显示在窗体的中央，值为null时，表示对话框在屏幕中央显示。message是显示的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = JOptionPane.showInputDialog(&quot;输入提示信息&quot;);</span><br><span class="line">JOptionPane.showMessageDialog(null,&quot;输出信息&quot;+s);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
