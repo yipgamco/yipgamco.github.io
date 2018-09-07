@@ -336,11 +336,9 @@
       
         
           
-            <h2 id="基本输入输出"><a href="#基本输入输出" class="headerlink" title="基本输入输出"></a>基本输入输出</h2><hr>
-<p>控制台输出：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">System</span>.out.<span class="keyword">print</span>();	<span class="comment">//不换行</span></span><br><span class="line"><span class="keyword">System</span>.out.println();	<span class="comment">//换行</span></span><br><span class="line"><span class="keyword">System</span>.out.printf();	<span class="comment">//带有元素类型</span></span><br></pre></td></tr></table></figure></p>
+            <h1 id="数组与方法"><a href="#数组与方法" class="headerlink" title="数组与方法"></a>数组与方法</h1><h2 id="基本输入输出"><a href="#基本输入输出" class="headerlink" title="基本输入输出"></a>基本输入输出</h2><p>控制台输出：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">System</span>.out.<span class="keyword">print</span>();	<span class="comment">//不换行</span></span><br><span class="line"><span class="keyword">System</span>.out.println();	<span class="comment">//换行</span></span><br><span class="line"><span class="keyword">System</span>.out.printf();	<span class="comment">//带有元素类型</span></span><br></pre></td></tr></table></figure></p>
 <p>控制台输入字符：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.<span class="keyword">in</span>.<span class="built_in">read</span>();</span><br></pre></td></tr></table></figure></p>
 <p>控制台输入字符串：<br>System.in获得数据，经过InputStreamReader转换为字符流，再经过BufferedReader包装，借助BufferedReader对象提供的readLine方法从键盘获取到字符串<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> s = <span class="string">""</span>;</span><br><span class="line">BufferedReader <span class="keyword">in</span> = <span class="keyword">new</span> <span class="type">BufferedReader</span>(<span class="keyword">new</span> <span class="type">InputStreamReader</span>(System.<span class="keyword">in</span>));</span><br><span class="line">s = <span class="keyword">in</span>.readLine();</span><br><span class="line"><span class="comment">//此时字符串储存在s中</span></span><br></pre></td></tr></table></figure></p>
-<hr>
 <p>swing对话框实现输入/输出：</p>
 <ul>
 <li>static void <strong>showMessageDialog</strong>(Component parentComponent,Object message)</li>
@@ -348,12 +346,60 @@
 <li><strong>message</strong>是显示的内容</li>
 </ul>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> s = JOptionPane.showInputDialog(<span class="string">"输入提示信息"</span>)<span class="comment">;</span></span><br><span class="line">JOptionPane.showMessageDialog(<span class="literal">null</span>,<span class="string">"输出信息"</span>+s)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组的创建：</p>
-<ol>
+<hr>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="一维数组的创建："><a href="#一维数组的创建：" class="headerlink" title="一维数组的创建："></a>一维数组的创建：</h3><ol>
 <li>声明数组，创造数组空间<br>int score[];<br>score = new int[10];</li>
 <li>也可以将1.2.步合并<br>int score[] = new int[10];</li>
 <li>或者直接创造数组元素并初始化<br>int score[] = {1,2,3,4,5,6,7,8,9,10};</li>
 </ol>
+<h3 id="二维数组创建："><a href="#二维数组创建：" class="headerlink" title="二维数组创建："></a>二维数组创建：</h3><ol>
+<li><p>同上</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a[<span class="string"></span>][<span class="symbol"></span>] = new int [<span class="string">2</span>][<span class="symbol">3</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从最高维开始，由高到低顺序分配空间</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a[<span class="string"></span>][<span class="symbol"></span>] = new int [<span class="string">2</span>][<span class="symbol"></span>];</span><br><span class="line">a[0] = new int [3];</span><br><span class="line">a[1] = new int [4];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Java语言中不要求每一维大小相同<br>获取行数和列数可用.length方法<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-class">.length</span>	<span class="comment">//行数</span></span><br><span class="line"><span class="selector-tag">a</span>[<span class="number">1</span>]<span class="selector-class">.length</span>	<span class="comment">//第一行的列数</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="方法声明"><a href="#方法声明" class="headerlink" title="方法声明"></a>方法声明</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修饰符..  返回类型  方法名(形参)<span class="selector-attr">[throws 异常列表]</span></span><br><span class="line">&#123;</span><br><span class="line">	方法具体语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修饰符有：</p>
+<ul>
+<li>访问修饰符：public</li>
+<li>抽象方法修饰符：abstract</li>
+<li>类方法修饰符：static</li>
+<li>最终方法修饰符：final</li>
+<li>同步方法修饰符：synchronized</li>
+<li>本地方法修饰符：native</li>
+</ul>
+<p>方法调用形式：  方法名(实参)</p>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><p>Java中参数传递是以传值方式进行的，实参储存的值传给形参。</p>
+<ol>
+<li>参数是基本数据类型(int、float)，传值<br>实参存的是变量的值，传参时把变量的值传给形参。这时候形参和实参操作的不是同一储存单元，修改形参的值不会影响实参</li>
+<li>参数是引用类型(对象、数组等)，传址<br>实参和形参中存放的都是引用对象地址，传参时实参把引用地址传给形参。这时候形参和实参操作的是同一储存单元。<br><strong>也就是说，参数是基本类型时，形参和形参互不影响。参数是引用类型时，相互影响。</strong></li>
+</ol>
+<hr>
+<hr>
+<h1 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h1><h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>定义：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[修饰符] <span class="class"><span class="keyword">class</span> 类名 [<span class="keyword">extends</span> 父类名] [<span class="keyword">implements</span> 接口列表]</span>&#123;</span><br><span class="line">	...<span class="comment">//类体部分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>[ ]内容为可部分<br>类的成员属性定义格式：<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[修饰符] 类型 变量名<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>类的成员方法的定义格式：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[修饰符]</span> 返回类型 方法名([参数定义列表]) <span class="selector-attr">[throws 异常列表]</span>&#123;</span><br><span class="line">	...<span class="comment">//方法体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="创建对象并访问对象成员"><a href="#创建对象并访问对象成员" class="headerlink" title="创建对象并访问对象成员"></a>创建对象并访问对象成员</h3><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Point</span> p1 = <span class="function"><span class="keyword">new</span> <span class="title">Point</span>(); 	<span class="comment">//创建对象并赋值给引用变量</span></span></span><br><span class="line"><span class="function"><span class="title">p1</span>.<span class="title">x</span> = 12;	<span class="comment">//引用对象属性</span></span></span><br><span class="line"><span class="function"><span class="title">p1</span>.<span class="title">setX</span>(<span class="number">5</span>);	<span class="comment">//引用对象方法</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="使用包组织类"><a href="#使用包组织类" class="headerlink" title="使用包组织类"></a>使用包组织类</h2><h3 id="建立包"><a href="#建立包" class="headerlink" title="建立包"></a>建立包</h3><ul>
+<li>java.*    java核心包</li>
+<li>javax.*    java拓展包</li>
+<li>org.*    组织扩展包<br>创建包要使用关键字package，而且要放在第一行。<br>每个包对应一个目录路径，以下定义意味着当前目录下有一个test子目录，该包中所有类的代码文件都存放在test目录下<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test;	<span class="comment">//定义包</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span>&#123;</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="引用包"><a href="#引用包" class="headerlink" title="引用包"></a>引用包</h3><ol>
+<li>使用包名作前缀<br>new java.util.Date()</li>
+<li>用import语句加载整个类<br>import java.util.Date</li>
+<li>用import语句加载整个包<br>import java.util.<em><br>(import java.util.</em>并不是把util整个包加载进程序中，而是告诉编译器使用这些类时到什么地方去查找类的代码)</li>
+<li>通过设置环境变量CLASSPATH指明字节码文件路径<br>使用DOS命令修改：<br>SET CLASSPAT = XXXXXX</li>
+</ol>
+<hr>
+<hr>
+<h1 id="继承与多态"><a href="#继承与多态" class="headerlink" title="继承与多态"></a>继承与多态</h1><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>定义类时通过extends关键字指明其要继承的直接父类<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.<span class="type">Color</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pixel</span> <span class="keyword">extends</span> <span class="title">Point</span></span>&#123;</span><br><span class="line">	<span class="type">Color</span> c;	<span class="comment">//颜色</span></span><br><span class="line">	<span class="comment">//其他</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//其中x、y属性从Point中继承</span></span><br></pre></td></tr></table></figure></p>
 
           
         
