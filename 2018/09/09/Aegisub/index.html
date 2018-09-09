@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="python脚本下载视频这两天突然想下载油管上的视频百度搜了一下方法，可以利用python脚本轻松实现python脚本：youtube-dl / you-get 安装方法:很简单，pip3安装即可12pip3 install youtube-dl		//安装youtube-dlpip3 install you-get		//安装you-get youtube-dl使用方法：1234youtube-">
+<meta name="keywords" content="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu下 下载视频并制作字幕">
+<meta property="og:url" content="http://yoursite.com/2018/09/09/Aegisub/index.html">
+<meta property="og:site_name" content="Yipgamco">
+<meta property="og:description" content="python脚本下载视频这两天突然想下载油管上的视频百度搜了一下方法，可以利用python脚本轻松实现python脚本：youtube-dl / you-get 安装方法:很简单，pip3安装即可12pip3 install youtube-dl		//安装youtube-dlpip3 install you-get		//安装you-get youtube-dl使用方法：1234youtube-">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-09T09:47:37.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu下 下载视频并制作字幕">
+<meta name="twitter:description" content="python脚本下载视频这两天突然想下载油管上的视频百度搜了一下方法，可以利用python脚本轻松实现python脚本：youtube-dl / you-get 安装方法:很简单，pip3安装即可12pip3 install youtube-dl		//安装youtube-dlpip3 install you-get		//安装you-get youtube-dl使用方法：1234youtube-">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/09/Aegisub/"/>
+
+
+
+
+
+  <title>ubuntu下 下载视频并制作字幕 | Yipgamco</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yipgamco</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">whoami</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/Aegisub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ye Jinchu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yipgamco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ubuntu下 下载视频并制作字幕</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T17:15:00+08:00">
+                2018-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/09/Aegisub/" class="leancloud_visitors" data-flag-title="ubuntu下 下载视频并制作字幕">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+		 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python脚本下载视频"><a href="#python脚本下载视频" class="headerlink" title="python脚本下载视频"></a>python脚本下载视频</h1><p>这两天突然想下载油管上的视频<br>百度搜了一下方法，可以利用python脚本轻松实现<br>python脚本：youtube-dl / you-get</p>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法:"></a>安装方法:</h2><p>很简单，pip3安装即可<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install youtube-<span class="selector-tag">dl</span>		<span class="comment">//安装youtube-dl</span></span><br><span class="line">pip3 install you-get		<span class="comment">//安装you-get</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="youtube-dl使用方法："><a href="#youtube-dl使用方法：" class="headerlink" title="youtube-dl使用方法："></a>youtube-dl使用方法：</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">youtube-<span class="selector-tag">dl</span> [url]		<span class="comment">//直接下载[url]中默认版本的视频</span></span><br><span class="line">或者：</span><br><span class="line">youtube-<span class="selector-tag">dl</span> -F [url]		<span class="comment">//列出[url]中可下载的不同版本</span></span><br><span class="line">youtube-<span class="selector-tag">dl</span> -f [code] [url]	<span class="comment">//下载[url]中[code]编号的视频</span></span><br></pre></td></tr></table></figure>
+<p>eg.<br>比如要下载这个链接中的视频：<a href="https://www.youtube.com/watch?v=YY5R-7dgbEA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=YY5R-7dgbEA</a><br>终端输入youtube-dl -F <a href="https://www.youtube.com/watch?v=YY5R-7dgbEA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=YY5R-7dgbEA</a><br>将会看到类似信息<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">jim@jim-OMEN-by-HP-Laptop:~$ youtube-<span class="selector-tag">dl</span> -F https:<span class="comment">//www.youtube.com/watch?v=YY5R-7dgbEA</span></span><br><span class="line">[youtube] YY5R-<span class="number">7</span>dgbEA: Downloading webpage</span><br><span class="line">[youtube] YY5R-<span class="number">7</span>dgbEA: Downloading <span class="selector-tag">video</span> info webpage</span><br><span class="line">[info] Available formats <span class="keyword">for</span> YY5R-<span class="number">7</span>dgbEA:</span><br><span class="line">format <span class="selector-tag">code</span>  extension  resolution note</span><br><span class="line"><span class="number">249</span>          webm       <span class="selector-tag">audio</span> only DASH <span class="selector-tag">audio</span>   <span class="number">68</span>k , opus @ <span class="number">50</span>k, <span class="number">13.43</span>MiB</span><br><span class="line"><span class="number">250</span>          webm       <span class="selector-tag">audio</span> only DASH <span class="selector-tag">audio</span>   <span class="number">88</span>k , opus @ <span class="number">70</span>k, <span class="number">16.56</span>MiB</span><br><span class="line"><span class="number">140</span>          m4a        <span class="selector-tag">audio</span> only DASH <span class="selector-tag">audio</span>  <span class="number">130</span>k , m4a_dash container, mp4a.<span class="number">40.2</span>@<span class="number">128</span>k, <span class="number">35.66</span>MiB</span><br><span class="line"><span class="number">171</span>          webm       <span class="selector-tag">audio</span> only DASH <span class="selector-tag">audio</span>  <span class="number">142</span>k , vorbis@<span class="number">128</span>k, <span class="number">28.76</span>MiB</span><br><span class="line"><span class="number">251</span>          webm       <span class="selector-tag">audio</span> only DASH <span class="selector-tag">audio</span>  <span class="number">168</span>k , opus @<span class="number">160</span>k, <span class="number">33.13</span>MiB</span><br><span class="line"><span class="number">160</span>          mp4        <span class="number">256</span>x144    <span class="number">144</span>p  <span class="number">113</span>k , avc1.<span class="number">4</span>d400c, <span class="number">30</span>fps, <span class="selector-tag">video</span> only, <span class="number">17.86</span>MiB</span><br><span class="line"><span class="number">133</span>          mp4        <span class="number">426</span>x240    <span class="number">240</span>p  <span class="number">250</span>k , avc1.<span class="number">4</span>d4015, <span class="number">30</span>fps, <span class="selector-tag">video</span> only, <span class="number">34.08</span>MiB</span><br><span class="line"><span class="number">134</span>          mp4        <span class="number">640</span>x360    <span class="number">360</span>p  <span class="number">642</span>k , avc1.<span class="number">4</span>d401e, <span class="number">30</span>fps, <span class="selector-tag">video</span> only, <span class="number">84.36</span>MiB</span><br><span class="line"><span class="number">135</span>          mp4        <span class="number">854</span>x480    <span class="number">480</span>p <span class="number">1265</span>k , avc1.<span class="number">4</span>d401f, <span class="number">30</span>fps, <span class="selector-tag">video</span> only, <span class="number">162.88</span>MiB</span><br><span class="line"><span class="number">136</span>          mp4        <span class="number">1280</span>x720   <span class="number">720</span>p <span class="number">2580</span>k , avc1.<span class="number">4</span>d401f, <span class="number">30</span>fps, <span class="selector-tag">video</span> only, <span class="number">309.07</span>MiB</span><br><span class="line"><span class="number">137</span>          mp4        <span class="number">1920</span>x1080  <span class="number">1080</span>p <span class="number">5037</span>k , avc1.<span class="number">640028</span>, <span class="number">30</span>fps, <span class="selector-tag">video</span> only, <span class="number">580.78</span>MiB</span><br><span class="line"><span class="number">17</span>           <span class="number">3</span>gp        <span class="number">176</span>x144    small , mp4v.<span class="number">20.3</span>, mp4a.<span class="number">40.2</span>@ <span class="number">24</span>k, <span class="number">22.78</span>MiB</span><br><span class="line"><span class="number">36</span>           <span class="number">3</span>gp        <span class="number">320</span>x180    small , mp4v.<span class="number">20.3</span>, mp4a.<span class="number">40.2</span>, <span class="number">62.02</span>MiB</span><br><span class="line"><span class="number">18</span>           mp4        <span class="number">640</span>x360    medium , avc1.<span class="number">42001</span>E, mp4a.<span class="number">40.2</span>@ <span class="number">96</span>k, <span class="number">153.09</span>MiB</span><br><span class="line"><span class="number">43</span>           webm       <span class="number">640</span>x360    medium , vp8.<span class="number">0</span>, vorbis@<span class="number">128</span>k, <span class="number">220.68</span>MiB</span><br><span class="line"><span class="number">22</span>           mp4        <span class="number">1280</span>x720   hd720 , avc1.<span class="number">64001</span>F, mp4a.<span class="number">40.2</span>@<span class="number">192</span>k (best)</span><br></pre></td></tr></table></figure></p>
+<p>接着可使用以下命令，下载相应编号版本的视频：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-<span class="selector-tag">dl</span> -f <span class="number">22</span> https:<span class="comment">//www.youtube.com/watch?v=YY5R-7dgbEA</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl --<span class="built_in">list</span>-subs [<span class="built_in">url</span>] 	<span class="comment">//列出所有可用字幕</span></span><br></pre></td></tr></table></figure>
+<h2 id="you-get使用方法"><a href="#you-get使用方法" class="headerlink" title="you-get使用方法"></a>you-get使用方法</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">you-get <span class="string">[url]</span>			//直接下载<span class="string">[url]</span>中默认版本的视频</span><br><span class="line">或者：</span><br><span class="line">you-get --info <span class="string">[url]</span>		//列出<span class="string">[url]</span>中可下载的不同版本</span><br><span class="line">you-get --itag=<span class="string">[code]</span> <span class="string">[url]</span>	//下载<span class="string">[url]</span>中<span class="string">[code]</span>编号的视频</span><br></pre></td></tr></table></figure>
+<p>可见两脚本十分相似，使用方法基本一样。<br>下载文件的储存路径为终端当前位置</p>
+<h1 id="Aegisub字幕制作软件"><a href="#Aegisub字幕制作软件" class="headerlink" title="Aegisub字幕制作软件"></a>Aegisub字幕制作软件</h1><h2 id="安装方法-1"><a href="#安装方法-1" class="headerlink" title="安装方法"></a>安装方法</h2><p>添加ppa源安装<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:djcj/aegisub</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install aegisub</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>顶栏中Video ——&gt; Open Video  导入视频</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/07/我的ID是江南美人/" rel="next" title="我的ID是江南美人">
+                <i class="fa fa-chevron-left"></i> 我的ID是江南美人
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ye Jinchu</p>
+              <p class="site-description motion-element" itemprop="description">description</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python脚本下载视频"><span class="nav-number">1.</span> <span class="nav-text">python脚本下载视频</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法"><span class="nav-number">1.1.</span> <span class="nav-text">安装方法:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#youtube-dl使用方法："><span class="nav-number">1.2.</span> <span class="nav-text">youtube-dl使用方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#you-get使用方法"><span class="nav-number">1.3.</span> <span class="nav-text">you-get使用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Aegisub字幕制作软件"><span class="nav-number">2.</span> <span class="nav-text">Aegisub字幕制作软件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法-1"><span class="nav-number">2.1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">2.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ye Jinchu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UImPGD0U4XMH91HgtDnznayA-gzGzoHsz", "t4G5I70UJwWSMte4WEhDUjiF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
