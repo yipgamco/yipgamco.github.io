@@ -253,6 +253,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/15/m3u8下载视频/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ye Jinchu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yipgamco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/15/m3u8下载视频/" itemprop="url">m3u8下载视频</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T20:33:36+08:00">
+                2018-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/15/m3u8下载视频/" class="leancloud_visitors" data-flag-title="m3u8下载视频">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+		 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ffmpeg直接下载mp4"><a href="#ffmpeg直接下载mp4" class="headerlink" title="ffmpeg直接下载mp4"></a>ffmpeg直接下载mp4</h1><p>使用ffmpeg工具，把m3u8索引的ts流全部下载而且合并成mp4格式<br>优点：命令简单，从m3u8文件到mp4文件只需一条命令，一步到位<br>缺点：下载速度较慢，测试时约为300Kb/s</p>
+<ol>
+<li>使用本地m3u8文件：<br><code>ffmpeg -i playlist.m3u8 -c copy output.mp4</code></li>
+<li>使用网络m3u8文件：<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i "url.m3u8" -c copy output.mp4</span><br><span class="line">-------</span><br><span class="line">ffmpeg -i "https://doubanzyv1.tyswmp.com/2018/09/09/rMqAPMbXTk6VlesT/playlist.m3u8" -c copy output.mp4</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>有些m3u8文件会使用AES-128加密，用记事本打开m3u8文件，会在第五行附近看到<br><code>#EXT-X-KEY:METHOD=AES-128,URI=&quot;key.key&quot;</code>就是使用本地key.key文件用于解密<br>2与1的区别是2使用了网络中的key.key，而不是使用本地下载好的key.key</p>
+<h1 id="ffmpeg合并本地ts文件为mp4"><a href="#ffmpeg合并本地ts文件为mp4" class="headerlink" title="ffmpeg合并本地ts文件为mp4"></a>ffmpeg合并本地ts文件为mp4</h1><ol>
+<li>使用concat协议进行合并<br>对于 MPEG 格式的视频，可以直接连接：(此格式下其实可以直接用cat或者copy之类的命令来对视频直接进行合并)<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i concat:"1.ts|2.ts|3.ts|4.ts" -c copy output.mp4</span><br><span class="line">-------</span><br><span class="line">ffmpeg -i "concat:out010.ts|out011.ts|out012.ts|out013.ts|out014.ts|out015.ts|out016.ts|out017.ts" -c copy output.mp4</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>对于非 MPEG 格式容器，但是是 MPEG 编码器（H.264、DivX、XviD、MPEG4、MPEG2、AAC、MP2、MP3 等），可以包装进 TS 格式的容器再合并。在新浪视频，有很多视频使用 H.264 编码器，可以采用这个方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="number">1</span><span class="selector-class">.flv</span> -c copy -bsf:v h264_mp4toannexb -f mpegts <span class="number">1</span>.ts</span><br><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="number">2</span><span class="selector-class">.flv</span> -c copy -bsf:v h264_mp4toannexb -f mpegts <span class="number">2</span>.ts</span><br><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="number">3</span><span class="selector-class">.flv</span> -c copy -bsf:v h264_mp4toannexb -f mpegts <span class="number">3</span>.ts</span><br><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="string">"concat:1.ts|2.ts|3.ts"</span> -c copy -bsf:<span class="selector-tag">a</span> aac_adtstoasc -movflags +faststart output.mp4</span><br></pre></td></tr></table></figure></p>
+<p>注：经测试，使用直接拼接命令时，如果输出视频后缀为.ts时，视频内容片段会缺失<br>直接使用cat命令拼接时，输出视频也会如此，未知原因</p>
+<ol start="2">
+<li>使用concat demuxer进行视频文件的合并<br>与1.方法不同的地方在于，输入文件为txt索引文件<br>txt文件内的格式为<code>file &#39;out001.ts&#39;</code><br>示例命令为：<br><code>ffmpeg -f concat -i list.txt -c copy output.mp4</code><br>同样的，输出视频后缀为.ts时，同样会出现片段缺失</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/macbuntu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,7 +1461,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
